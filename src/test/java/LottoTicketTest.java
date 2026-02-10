@@ -13,13 +13,13 @@ public class LottoTicketTest {
     @BeforeEach
     public void setUP() {
         money = new Money(14000);
-        lottoTickets = new LottoTickets();
+        lottoTickets = new LottoTickets(money);
     }
 
 
     @Test
     public void 로또_번호들이_중복되지_않는지_검증한다() {
-        List<Lotto> lottos = lottoTickets.generateLottos(money);
+        List<Lotto> lottos = lottoTickets.getLottos();
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
@@ -27,7 +27,7 @@ public class LottoTicketTest {
     }
 
     @Test
-    public void 로또_번호가_1개_동일했을_때_검증한다() {
+    public void 로또_번호가_3개_동일했을_때_5등이다() {
         Lotto winningLotto = new Lotto(1, 2, 3, 4, 5, 6);
         Lotto lotto = new Lotto(1, 2, 3, 9, 10, 11);
 

@@ -10,18 +10,15 @@ import java.util.function.Supplier;
 public class LottoController {
     public static void run() {
         Money userMoney = retry(InputView::inputMoney);
-        LottoTickets lottoTickets = new LottoTickets();
-        List<Lotto> lottos = lottoTickets.generateLottos(userMoney);
+        LottoTickets lottoTickets = new LottoTickets(userMoney);
 
-        OutputView.printLottos(lottos);
+        OutputView.printLottos(lottoTickets.getLottos());
         Lotto winningLotto = retry(InputView::inputWinningNumbers);
-        LottoNumber bonusNumber = retry(InputView::inputBonusNumber);
+        LottoNumber bonusNumber = retry(() -> InputView.inputBonusNumber(winningLotto));
 
         List<Rank> ranks = lottoTickets.match(winningLotto, bonusNumber);
-        System.out.println(ranks.size());
         OutputView.printWinning(ranks);
-
-        System.out.printf("총 수익률은 %f입니다.", userMoney.calculateRate(ranks));
+        OutputView.printRate(userMoney.calculateRate(ranks));
     }
 
     private static <T> T retry(Supplier<T> supplier) {

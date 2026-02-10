@@ -48,4 +48,8 @@ public class OutputView {
         System.out.printf("%d개 일치 (%d원)- %d개%n",
                 rank.getCountOfMatch(), rank.getWinningMoney(), count);
     }
+
+    public static void printRate(float rate) {
+        System.out.printf("총 수익률은 %f입니다.%n", rate);
+    }
 }
