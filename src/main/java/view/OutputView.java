@@ -39,17 +39,17 @@ public class OutputView {
         printGeneralRank(rank, count);
     }
 
-    private static void printSecondRank(Rank rank, long count) {
+    private static void printSecondRank(Rank rank, Long count) {
         System.out.printf("5개 일치, 보너스 볼 일치(%d원) - %d개%n",
                 rank.getWinningMoney(), count);
     }
 
-    private static void printGeneralRank(Rank rank, long count) {
+    private static void printGeneralRank(Rank rank, Long count) {
         System.out.printf("%d개 일치 (%d원)- %d개%n",
                 rank.getCountOfMatch(), rank.getWinningMoney(), count);
     }
 
-    public static void printRate(float rate) {
-        System.out.printf("총 수익률은 %f입니다.%n", rate);
+    public static void printRate(Double rate) {
+        System.out.printf("총 수익률은 %.2f입니다.%n", Math.floor(rate * 100) / 100);
     }
 }

@@ -10,20 +10,20 @@ public enum Rank {
     FIFTH(3, 5_000),
     MISS(0, 0);
 
-    private final int countOfMatch;
-    private final int winningMoney;
+    private final Integer countOfMatch;
+    private final Integer winningMoney;
 
-    Rank(int countOfMatch, int winningMoney) {
+    Rank(Integer countOfMatch, Integer winningMoney) {
         this.countOfMatch = countOfMatch;
         this.winningMoney = winningMoney;
     }
 
-    public static Rank valueOf(int countOfMatch, boolean matchBonus) {
+    public static Rank valueOf(Integer countOfMatch, Boolean matchBonus) {
         if (countOfMatch < 3) {
             return MISS;
         }
 
-        if (countOfMatch == SECOND.countOfMatch && matchBonus) {
+        if (countOfMatch.equals(SECOND.countOfMatch) && matchBonus) {
             return SECOND;
         }
 
@@ -33,8 +33,8 @@ public enum Rank {
                 .orElse(MISS);
     }
 
-    private boolean matchCount(int countOfMatch) {
-        return this.countOfMatch == countOfMatch;
+    private boolean matchCount(Integer countOfMatch) {
+        return this.countOfMatch.equals(countOfMatch);
     }
 
     public int getCountOfMatch() {

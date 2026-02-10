@@ -15,7 +15,7 @@ public class InputView {
     public static Money inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
 
-        int value = Integer.parseInt(scanner.nextLine());
+        Integer value = Integer.parseInt(scanner.nextLine());
         return new Money(value);
     }
 
@@ -33,7 +33,7 @@ public class InputView {
 
     public static LottoNumber inputBonusNumber(Lotto winningLotto) throws IllegalArgumentException {
         System.out.println("보너스 볼을 입력해 주세요.");
-        int number = Integer.parseInt(scanner.nextLine());
+        Integer number = Integer.parseInt(scanner.nextLine());
         LottoNumber bonusNumber = new LottoNumber(number);
 
         if (winningLotto.contains(bonusNumber)) {

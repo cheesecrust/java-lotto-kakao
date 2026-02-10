@@ -3,10 +3,10 @@ package domains;
 import java.util.List;
 
 public class Money {
-    private final int amount;
-    private static final int LOTTO_COST = 1000;
+    private final Integer amount;
+    private static final Integer LOTTO_COST = 1000;
 
-    public Money(int amount) {
+    public Money(Integer amount) {
         if (amount < 0) {
             throw new IllegalArgumentException("돈은 음수일 수 없습니다.");
         }
@@ -20,12 +20,12 @@ public class Money {
         return amount / LOTTO_COST;
     }
 
-    public float calculateRate(List<Rank> rankList) {
+    public Double calculateRate(List<Rank> rankList) {
 
-        long totalWinningMoney = rankList.stream()
+        Long totalWinningMoney = rankList.stream()
                 .mapToLong(Rank::getWinningMoney)
                 .sum();
 
-        return (float) totalWinningMoney / amount;
+        return totalWinningMoney.doubleValue() / amount.doubleValue();
     }
 }
