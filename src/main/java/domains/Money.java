@@ -3,8 +3,8 @@ package domains;
 import java.util.List;
 
 public class Money {
-    private int amount;
-    private final int lottoCost = 1000;
+    private final int amount;
+    private static final int LOTTO_COST = 1000;
 
     public Money(int amount) {
         if (amount < 0) {
@@ -14,7 +14,7 @@ public class Money {
     }
 
     public int availableLottoCount() {
-        return amount / lottoCost;
+        return amount / LOTTO_COST;
     }
 
     public Float calculateRate(List<Rank> rankList) {
