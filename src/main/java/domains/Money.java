@@ -10,6 +10,9 @@ public class Money {
         if (amount < 0) {
             throw new IllegalArgumentException("돈은 음수일 수 없습니다.");
         }
+        if (amount < LOTTO_COST) {
+            throw new IllegalArgumentException("돈은 " + LOTTO_COST + "이상이여야 합니다.");
+        }
         this.amount = amount;
     }
 
@@ -17,8 +20,7 @@ public class Money {
         return amount / LOTTO_COST;
     }
 
-    public Float calculateRate(List<Rank> rankList) {
-        if (amount == 0) return (float) 0;
+    public float calculateRate(List<Rank> rankList) {
 
         long totalWinningMoney = rankList.stream()
                 .mapToLong(Rank::getWinningMoney)

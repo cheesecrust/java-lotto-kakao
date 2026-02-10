@@ -26,10 +26,7 @@ public class MoneyTest {
     }
 
     @Test
-    public void 초기자금이_0일때_수익률은_0을_반환한다() {
-        int value = 0;
-        Money money = new Money(value);
-        List<Rank> rankList = List.of(FIRST, SECOND);
-        assertEquals(0, money.calculateRate(rankList));
+    public void 초기자금이_1000원_미만이면_예외가_발생한다() {
+        assertThrows(IllegalArgumentException.class, () -> new Money(999));
     }
 }

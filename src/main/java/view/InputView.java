@@ -16,8 +16,6 @@ public class InputView {
         System.out.println("구입금액을 입력해 주세요.");
 
         int value = Integer.parseInt(scanner.nextLine());
-        if (value < 1000) throw new IllegalArgumentException("돈은 1000이상이여야 합니다.");
-
         return new Money(value);
     }
 

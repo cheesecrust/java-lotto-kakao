@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
-    private LottoNumber[] numbers;
+    private final LottoNumber[] numbers;
     private static final int LOTTO_SIZE = 6;
 
     public Lotto(List<LottoNumber> numbers) {
