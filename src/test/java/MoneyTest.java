@@ -7,6 +7,7 @@ import java.util.List;
 import static domains.Rank.FIRST;
 import static domains.Rank.SECOND;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MoneyTest {
     @Test
