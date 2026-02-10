@@ -33,15 +33,15 @@ public enum Rank {
                 .orElse(MISS);
     }
 
-    private boolean matchCount(Integer countOfMatch) {
+    private Boolean matchCount(Integer countOfMatch) {
         return this.countOfMatch.equals(countOfMatch);
     }
 
-    public int getCountOfMatch() {
+    public Integer getCountOfMatch() {
         return countOfMatch;
     }
 
-    public int getWinningMoney() {
+    public Integer getWinningMoney() {
         return winningMoney;
     }
 }

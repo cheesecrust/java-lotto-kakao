@@ -29,7 +29,7 @@ public class OutputView {
     }
 
     private static void printEachRank(Rank rank, Map<Rank, Long> counts) {
-        long count = counts.getOrDefault(rank, 0L);
+        Long count = counts.getOrDefault(rank, 0L);
 
         if (rank == Rank.SECOND) {
             printSecondRank(rank, count);

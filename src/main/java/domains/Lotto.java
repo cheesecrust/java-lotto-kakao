@@ -44,7 +44,7 @@ public class Lotto {
         }
     }
 
-    public boolean contains(LottoNumber number) {
+    public Boolean contains(LottoNumber number) {
         return numbers.contains(number);
     }
 
@@ -55,8 +55,7 @@ public class Lotto {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Lotto)) return false;
-        Lotto that = (Lotto) o;
+        if (!(o instanceof Lotto that)) return false;
         return this.numbers.equals(that.numbers);
     }
 
@@ -66,13 +65,13 @@ public class Lotto {
     }
 
     public Rank match(Lotto winningLotto, LottoNumber bonusNumber) {
-        int matchCount = countMatches(winningLotto);
-        boolean matchBonus = contains(bonusNumber);
+        Integer matchCount = countMatches(winningLotto);
+        Boolean matchBonus = contains(bonusNumber);
 
         return Rank.valueOf(matchCount, matchBonus);
     }
 
-    public int countMatches(Lotto winningLotto) {
+    public Integer countMatches(Lotto winningLotto) {
         return (int) numbers.stream()
                 .filter(winningLotto::contains)
                 .count();

@@ -14,15 +14,12 @@ public class InputView {
 
     public static Money inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-
-        Integer value = Integer.parseInt(scanner.nextLine());
-        return new Money(value);
+        return new Money(inputInteger());
     }
 
     public static Lotto inputWinningNumbers() throws IllegalArgumentException {
         System.out.println("\n지난 주 당첨 번호를 입력해 주세요.");
-        String input = scanner.nextLine();
-        List<LottoNumber> numbers = Arrays.stream(input.split(","))
+        List<LottoNumber> numbers = Arrays.stream(inputString().split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .map(LottoNumber::new)
@@ -33,13 +30,20 @@ public class InputView {
 
     public static LottoNumber inputBonusNumber(Lotto winningLotto) throws IllegalArgumentException {
         System.out.println("보너스 볼을 입력해 주세요.");
-        Integer number = Integer.parseInt(scanner.nextLine());
-        LottoNumber bonusNumber = new LottoNumber(number);
+        LottoNumber bonusNumber = new LottoNumber(inputInteger());
 
         if (winningLotto.contains(bonusNumber)) {
             throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
 
         return bonusNumber;
+    }
+
+    public static Integer inputInteger() {
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    public static String inputString() {
+        return scanner.nextLine();
     }
 }
