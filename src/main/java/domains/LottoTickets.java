@@ -8,20 +8,22 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoTickets {
-    private List<Lotto> lottos;
+    private final List<Lotto> lottos;
     private static final List<LottoNumber> ALL_NUMBERS = IntStream.rangeClosed(1, 45)
             .mapToObj(LottoNumber::new)
             .collect(Collectors.toList());
 
-    public List<Lotto> generateLottos(Money money) {
+    public LottoTickets(Money money) {
         int count = money.availableLottoCount();
 
         lottos = new ArrayList<>();
-        for(int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             lottos.add(generateLotto());
         }
+    }
 
-        return lottos;
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
     }
 
     private Lotto generateLotto() {
