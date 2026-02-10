@@ -48,16 +48,15 @@ public class Lotto {
     }
 
     public LottoNumber[] getNumbers() {
-        return numbers;
+        return Arrays.copyOf(numbers, numbers.length);
     }
 
     @Override
     public boolean equals(Object o) {
-        LottoNumber[] thatNumbers = ((Lotto) o).getNumbers();
-        for (int i = 0; i < 6; i++) {
-            if (!thatNumbers[i].equals(this.numbers[i])) return false;
-        }
-        return true;
+        if (this == o) return true;
+        if (!(o instanceof Lotto)) return false;
+        Lotto that = (Lotto) o;
+        return Arrays.equals(this.numbers, that.numbers);
     }
 
     @Override
