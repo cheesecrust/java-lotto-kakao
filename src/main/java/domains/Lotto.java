@@ -13,9 +13,9 @@ public class Lotto {
         validateSize(numbers);
         validateDuplicate(numbers);
 
-        this.numbers = (ArrayList<LottoNumber>) numbers.stream()
+        this.numbers = new ArrayList<>(numbers.stream()
                 .sorted()
-                .toList();
+                .toList());
     }
 
     public Lotto(int... numbers) {
@@ -45,7 +45,7 @@ public class Lotto {
     }
 
     public boolean contains(LottoNumber number) {
-        return Arrays.asList(numbers).contains(number);
+        return numbers.contains(number);
     }
 
     public ArrayList<LottoNumber> getNumbers() {
