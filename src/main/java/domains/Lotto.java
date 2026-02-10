@@ -1,20 +1,21 @@
 package domains;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
-    private final LottoNumber[] numbers;
+    private final ArrayList<LottoNumber> numbers;
     private static final int LOTTO_SIZE = 6;
 
     public Lotto(List<LottoNumber> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
 
-        this.numbers = numbers.stream()
+        this.numbers = (ArrayList<LottoNumber>) numbers.stream()
                 .sorted()
-                .toArray(LottoNumber[]::new);
+                .toList();
     }
 
     public Lotto(int... numbers) {
@@ -47,8 +48,8 @@ public class Lotto {
         return Arrays.asList(numbers).contains(number);
     }
 
-    public LottoNumber[] getNumbers() {
-        return Arrays.copyOf(numbers, numbers.length);
+    public ArrayList<LottoNumber> getNumbers() {
+        return numbers;
     }
 
     @Override
@@ -56,12 +57,12 @@ public class Lotto {
         if (this == o) return true;
         if (!(o instanceof Lotto)) return false;
         Lotto that = (Lotto) o;
-        return Arrays.equals(this.numbers, that.numbers);
+        return this.numbers.equals(that.numbers);
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(numbers);
+        return numbers.hashCode();
     }
 
     public Rank match(Lotto winningLotto, LottoNumber bonusNumber) {
@@ -71,15 +72,14 @@ public class Lotto {
         return Rank.valueOf(matchCount, matchBonus);
     }
 
-    // 배열을 스트림으로 변환하여 매칭 개수 계산
     public int countMatches(Lotto winningLotto) {
-        return (int) Arrays.stream(numbers)
+        return (int) numbers.stream()
                 .filter(winningLotto::contains)
                 .count();
     }
 
     @Override
     public String toString() {
-        return Arrays.toString(numbers);
+        return numbers.toString();
     }
 }

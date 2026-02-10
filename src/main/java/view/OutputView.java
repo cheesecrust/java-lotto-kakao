@@ -33,7 +33,7 @@ public class OutputView {
 
         if (rank == Rank.SECOND) {
             printSecondRank(rank, count);
-            return; // else 대신 return 사용
+            return;
         }
 
         printGeneralRank(rank, count);

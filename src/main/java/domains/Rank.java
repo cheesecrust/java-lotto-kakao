@@ -33,7 +33,6 @@ public enum Rank {
                 .orElse(MISS);
     }
 
-    // (보조 메서드) 개수가 일치하는지 확인
     private boolean matchCount(int countOfMatch) {
         return this.countOfMatch == countOfMatch;
     }
