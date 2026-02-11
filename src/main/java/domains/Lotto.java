@@ -49,7 +49,7 @@ public class Lotto {
     }
 
     public List<LottoNumber> getNumbers() {
-        return numbers;
+        return List.copyOf(numbers);
     }
 
     @Override
