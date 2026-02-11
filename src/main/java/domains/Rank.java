@@ -18,19 +18,22 @@ public enum Rank {
         this.winningMoney = winningMoney;
     }
 
-    public static Rank valueOf(Integer countOfMatch, Boolean matchBonus) {
+    public static Rank mainMatch(Integer countOfMatch) {
         if (countOfMatch < 3) {
             return MISS;
-        }
-
-        if (countOfMatch.equals(SECOND.countOfMatch) && matchBonus) {
-            return SECOND;
         }
 
         return Arrays.stream(values())
                 .filter(rank -> rank.matchCount(countOfMatch) && rank != SECOND)
                 .findFirst()
                 .orElse(MISS);
+    }
+
+    public static Rank bonusMatch(Rank rank, Boolean matchBonus) {
+        if (rank.equals(THIRD) && matchBonus) {
+            return SECOND;
+        }
+        return rank;
     }
 
     private Boolean matchCount(Integer countOfMatch) {
