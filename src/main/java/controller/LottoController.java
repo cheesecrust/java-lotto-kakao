@@ -1,14 +1,11 @@
 package controller;
 
-import domains.Lotto;
-import domains.LottoNumber;
-import domains.LottoTickets;
-import domains.Money;
-import domains.Rank;
+import domains.*;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
+import java.util.Random;
 import java.util.function.Supplier;
 
 public class LottoController {

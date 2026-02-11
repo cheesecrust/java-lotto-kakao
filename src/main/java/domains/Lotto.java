@@ -48,10 +48,6 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public List<LottoNumber> getNumbers() {
-        return List.copyOf(numbers);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {

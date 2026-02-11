@@ -19,10 +19,6 @@ public class LottoNumber implements Comparable<LottoNumber> {
         this.number = number;
     }
 
-    public Integer getNumber() {
-        return number;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -51,9 +47,10 @@ public class LottoNumber implements Comparable<LottoNumber> {
     }
 
     public static LottoNumber of(int number) {
+        int idx = number - 1;
         if (number < MIN || number > MAX) {
             throw new IllegalArgumentException("로또 번호는 1~45사이여야 합니다.");
         }
-        return ALL_NUMBERS.get(number);
+        return ALL_NUMBERS.get(idx);
     }
 }

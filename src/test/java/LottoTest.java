@@ -41,4 +41,18 @@ public class LottoTest {
 
         assertEquals(lotto1, lotto2);
     }
+
+    @Test
+    public void 비교_객체타입_다를_경우_실패() {
+        LottoNumber lottoNumber = new LottoNumber(1);
+        Lotto lotto = new Lotto(1, 2, 3, 4, 5, 6);
+        assertNotEquals(lotto, lottoNumber);
+    }
+
+    @Test
+    void 같은_객체_참조이면_equals는_true를_반환한다() {
+        Lotto lotto = new Lotto(1, 2, 3, 4, 5, 6);
+        boolean result = lotto.equals(lotto);
+        assertTrue(result);
+    }
 }
