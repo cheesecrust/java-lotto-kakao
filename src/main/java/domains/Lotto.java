@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
-    private final ArrayList<LottoNumber> numbers;
     private static final Integer LOTTO_SIZE = 6;
+    private final ArrayList<LottoNumber> numbers;
 
     public Lotto(List<LottoNumber> numbers) {
         validateSize(numbers);

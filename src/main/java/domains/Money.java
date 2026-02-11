@@ -3,8 +3,8 @@ package domains;
 import java.util.List;
 
 public class Money {
-    private final Integer amount;
     private static final Integer LOTTO_COST = 1000;
+    private final Integer amount;
 
     public Money(Integer amount) {
         if (amount < 0) {
