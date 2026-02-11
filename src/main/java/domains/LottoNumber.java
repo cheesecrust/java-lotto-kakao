@@ -49,4 +49,11 @@ public class LottoNumber implements Comparable<LottoNumber> {
     public String toString() {
         return number.toString();
     }
+
+    public static LottoNumber of(int number) {
+        if (number < MIN || number > MAX) {
+            throw new IllegalArgumentException("로또 번호는 1~45사이여야 합니다.");
+        }
+        return ALL_NUMBERS.get(number);
+    }
 }
