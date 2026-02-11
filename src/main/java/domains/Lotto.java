@@ -75,7 +75,7 @@ public class Lotto {
         return Rank.valueOf(matchCount, matchBonus);
     }
 
-    public Integer countMatches(Lotto winningLotto) {
+    public int countMatches(Lotto winningLotto) {
         return (int) numbers.stream()
                 .filter(winningLotto::contains)
                 .count();
