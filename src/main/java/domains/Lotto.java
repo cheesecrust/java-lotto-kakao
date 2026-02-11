@@ -72,7 +72,9 @@ public class Lotto {
         Integer matchCount = countMatches(winningLotto);
         Boolean matchBonus = contains(bonusNumber);
 
-        return Rank.valueOf(matchCount, matchBonus);
+        Rank rank = Rank.mainMatch(matchCount);
+        rank = Rank.bonusMatch(rank, matchBonus);
+        return rank;
     }
 
     public int countMatches(Lotto winningLotto) {

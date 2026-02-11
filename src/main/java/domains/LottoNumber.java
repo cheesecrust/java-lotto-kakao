@@ -5,13 +5,15 @@ import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class LottoNumber implements Comparable<LottoNumber> {
-    static final List<LottoNumber> ALL_NUMBERS = IntStream.rangeClosed(1, 45)
+    private static final int MIN = 1;
+    private static final int MAX = 45;
+    static final List<LottoNumber> ALL_NUMBERS = IntStream.rangeClosed(MIN, MAX)
             .mapToObj(LottoNumber::new)
             .toList();
     private final Integer number;
 
     public LottoNumber(int number) {
-        if (number < ALL_NUMBERS.getFirst().getNumber() || number > ALL_NUMBERS.getLast().getNumber()) {
+        if (number < MIN || number > MAX) {
             throw new IllegalArgumentException("로또 번호는 1~45사이여야 합니다.");
         }
         this.number = number;
