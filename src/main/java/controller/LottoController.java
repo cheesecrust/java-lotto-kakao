@@ -1,6 +1,10 @@
 package controller;
 
-import domains.*;
+import domains.Lotto;
+import domains.LottoNumber;
+import domains.LottoTickets;
+import domains.Money;
+import domains.Rank;
 import view.InputView;
 import view.OutputView;
 
