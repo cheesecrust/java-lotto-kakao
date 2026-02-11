@@ -1,6 +1,8 @@
 import domains.Lotto;
 import domains.LottoNumber;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,9 +29,14 @@ public class LottoTest {
         assertTrue(lotto.contains(number));
     }
 
-    @Test
-    public void 로또는_오름차순이어야_한다() {
-        Lotto lotto1 = new Lotto(6, 5, 4, 3, 2, 1);
+    @ParameterizedTest
+    @CsvSource({
+            "6,5,4,3,2,1",
+            "3,1,2,6,5,4",
+            "2,1,4,3,6,5"
+    })
+    public void 로또는_오름차순이어야_한다(int n1, int n2, int n3, int n4, int n5, int n6) {
+        Lotto lotto1 = new Lotto(n1, n2, n3, n4, n5, n6);
         Lotto lotto2 = new Lotto(1, 2, 3, 4, 5, 6);
 
         assertEquals(lotto1, lotto2);
