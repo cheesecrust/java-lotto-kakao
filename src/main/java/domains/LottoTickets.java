@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoTickets {
-    private final ArrayList<Lotto> lottos;
+    private final List<Lotto> lottos;
     private static final List<LottoNumber> ALL_NUMBERS = IntStream.rangeClosed(1, 45)
             .mapToObj(LottoNumber::new)
             .toList();
