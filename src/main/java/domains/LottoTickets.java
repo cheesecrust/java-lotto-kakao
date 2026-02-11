@@ -5,13 +5,11 @@ import java.util.Collections;
 import java.util.List;
 
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+
+import static domains.LottoNumber.ALL_NUMBERS;
 
 public class LottoTickets {
     private final List<Lotto> lottos;
-    private static final List<LottoNumber> ALL_NUMBERS = IntStream.rangeClosed(1, 45)
-            .mapToObj(LottoNumber::new)
-            .toList();
 
     public LottoTickets(Money money) {
         int count = money.availableLottoCount();

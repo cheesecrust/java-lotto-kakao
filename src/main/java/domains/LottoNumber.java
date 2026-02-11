@@ -1,12 +1,17 @@
 package domains;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class LottoNumber implements Comparable<LottoNumber> {
+    static final List<LottoNumber> ALL_NUMBERS = IntStream.rangeClosed(1, 45)
+            .mapToObj(LottoNumber::new)
+            .toList();
     private final Integer number;
 
     public LottoNumber(int number) {
-        if (number < 1 || number > 45) {
+        if (number < ALL_NUMBERS.getFirst().getNumber() || number > ALL_NUMBERS.getLast().getNumber()) {
             throw new IllegalArgumentException("로또 번호는 1~45사이여야 합니다.");
         }
         this.number = number;
