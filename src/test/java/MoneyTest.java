@@ -29,4 +29,9 @@ public class MoneyTest {
     public void 초기자금이_1000원_미만이면_예외가_발생한다() {
         assertThrows(IllegalArgumentException.class, () -> new Money(999));
     }
+
+    @Test
+    public void 돈은_음수일_수_없습니다() {
+        assertThrows(IllegalArgumentException.class, () -> new Money(-1));
+    }
 }

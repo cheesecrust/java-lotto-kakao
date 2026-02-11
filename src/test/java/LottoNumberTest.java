@@ -51,4 +51,10 @@ public class LottoNumberTest {
         LottoNumber lottoNumber = new LottoNumber(1);
         assertEquals(lottoNumber, LottoNumber.of(1));
     }
+
+    @Test
+    public void to_String_test() {
+        LottoNumber lottoNumber = new LottoNumber(1);
+        assertEquals("1", lottoNumber.toString());
+    }
 }

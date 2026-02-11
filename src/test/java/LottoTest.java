@@ -55,4 +55,10 @@ public class LottoTest {
         boolean result = lotto.equals(lotto);
         assertTrue(result);
     }
+
+    @Test
+    public void to_String_test() {
+        Lotto lotto = new Lotto(1, 2, 3, 4, 5, 6);
+        assertEquals("[1, 2, 3, 4, 5, 6]", lotto.toString());
+    }
 }

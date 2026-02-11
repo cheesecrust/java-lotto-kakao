@@ -41,6 +41,13 @@ public class LottoTicketTest {
     }
 
     @Test
+    public void 로또_번호가_5개_동일하고_보너스가_틀리면_3등이다() {
+        Lotto winningLotto = new Lotto(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(1, 2, 3, 4, 5, 11);
+        assertEquals(Rank.THIRD, lotto.match(winningLotto, new LottoNumber(10)));
+    }
+
+    @Test
     public void 로또_리스트가_주어졌을때_결과리스트_반환(){
         Lotto winningLotto = new Lotto(1, 2, 3, 4, 5, 6);
         LottoNumber bonusNumber = LottoNumber.of(7);
