@@ -18,18 +18,25 @@ public class LottoController {
         try {
             Money userMoney = retry(InputView::inputMoney);
             LottoTickets lottoTickets = new LottoTickets(userMoney);
-
             OutputView.printLottos(lottoTickets.getLottos());
+
             Lotto winningLotto = retry(InputView::inputWinningNumbers);
             LottoNumber bonusNumber = retry(() -> InputView.inputBonusNumber(winningLotto));
 
-            List<Rank> ranks = lottoTickets.match(winningLotto, bonusNumber);
-            OutputView.printWinning(ranks);
-            OutputView.printRate(userMoney.calculateRate(ranks));
+            RankResult result = execute(lottoTickets, winningLotto, bonusNumber, userMoney);
+
+            OutputView.printWinning(result.getRanks());
+            OutputView.printRate(result.getRate());
         } catch (IllegalStateException e) {
             System.out.println(e.getMessage());
             System.out.println("로또가 종료되었습니다.");
         }
+    }
+
+    public static RankResult execute(LottoTickets lottoTickets, Lotto winningLotto, LottoNumber bonusNumber, Money userMoney) {
+        List<Rank> ranks = lottoTickets.match(winningLotto, bonusNumber);
+        Double rate = userMoney.calculateRate(ranks);
+        return new RankResult(ranks, rate);
     }
 
     private static <T> T retry(Supplier<T> supplier) {
