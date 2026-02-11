@@ -54,8 +54,12 @@ public class Lotto {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Lotto that)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Lotto that)) {
+            return false;
+        }
         return this.numbers.equals(that.numbers);
     }
 
