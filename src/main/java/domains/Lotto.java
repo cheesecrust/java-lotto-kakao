@@ -24,7 +24,7 @@ public class Lotto {
 
     private static List<LottoNumber> toLottoNumberList(int[] numbers) {
         return Arrays.stream(numbers)
-                .mapToObj(LottoNumber::of)
+                .mapToObj(LottoNumber::from)
                 .collect(Collectors.toList());
     }
 

@@ -7,14 +7,14 @@ import java.util.stream.IntStream;
 public class LottoNumber implements Comparable<LottoNumber> {
     private static final int MIN = 1;
     private static final int MAX = 45;
-    static final List<LottoNumber> ALL_NUMBERS = IntStream.rangeClosed(MIN, MAX)
+    private static final List<LottoNumber> ALL_NUMBERS = IntStream.rangeClosed(MIN, MAX)
             .mapToObj(LottoNumber::new)
             .toList();
     private final Integer number;
 
     public LottoNumber(int number) {
         if (number < MIN || number > MAX) {
-            throw new IllegalArgumentException("로또 번호는 1~45사이여야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 %d~%d사이여야 합니다.".formatted(MIN, MAX));
         }
         this.number = number;
     }
@@ -46,11 +46,15 @@ public class LottoNumber implements Comparable<LottoNumber> {
         return number.toString();
     }
 
-    public static LottoNumber of(int number) {
+    public static LottoNumber from(int number) {
         int idx = number - 1;
         if (number < MIN || number > MAX) {
             throw new IllegalArgumentException("로또 번호는 1~45사이여야 합니다.");
         }
         return ALL_NUMBERS.get(idx);
+    }
+
+    public static List<LottoNumber> getAllNumbers() {
+        return ALL_NUMBERS;
     }
 }

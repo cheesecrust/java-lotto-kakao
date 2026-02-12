@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 
 import static domains.Rank.FIFTH;
-import static domains.Rank.FIRST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LottoTicketTest {
@@ -16,7 +15,8 @@ public class LottoTicketTest {
     @BeforeEach
     public void setUP() {
         money = new Money(14000);
-        lottoTickets = new LottoTickets(money);
+        LottoGenerator lottoGenerator = new RandomLottoGenerator();
+        lottoTickets = new LottoTickets(money, lottoGenerator);
     }
 
     @Test
@@ -50,7 +50,7 @@ public class LottoTicketTest {
     @Test
     public void 로또_리스트가_주어졌을때_결과리스트_반환(){
         Lotto winningLotto = new Lotto(1, 2, 3, 4, 5, 6);
-        LottoNumber bonusNumber = LottoNumber.of(7);
+        LottoNumber bonusNumber = LottoNumber.from(7);
 
         List<Rank> result = lottoTickets.match(winningLotto, bonusNumber);
         assertEquals(money.availableLottoCount(), result.size());

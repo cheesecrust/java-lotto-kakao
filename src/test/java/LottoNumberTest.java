@@ -32,10 +32,10 @@ public class LottoNumberTest {
     @Test
     public void 범위를_넘은_번호는_객체변환_실패한다() {
         assertThrows(IllegalArgumentException.class, () -> {
-            LottoNumber.of(0);
+            LottoNumber.from(0);
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            LottoNumber.of(46);
+            LottoNumber.from(46);
         });
     }
 
@@ -49,7 +49,7 @@ public class LottoNumberTest {
     @Test
     public void of_변환_테스트() {
         LottoNumber lottoNumber = new LottoNumber(1);
-        assertEquals(lottoNumber, LottoNumber.of(1));
+        assertEquals(lottoNumber, LottoNumber.from(1));
     }
 
     @Test
