@@ -13,9 +13,19 @@ import java.util.stream.Collectors;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static ManualCount inputManualCount(Integer availableLottoCount) {
+    public static ManualCount inputManualCount(Money totalMoney) {
         System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
-        return new ManualCount(availableLottoCount, inputInteger());
+        return new ManualCount(totalMoney.availableLottoCount(), inputInteger());
+    }
+
+    public static Lotto inputManualLottoList() {
+        System.out.println("수동으로 구매할 로또 번호를 입력해 주세요.");
+        List<LottoNumber> numbers = Arrays.stream(inputString().split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .map(LottoNumber::new)
+                .collect(Collectors.toList());
+        return new Lotto(numbers);
     }
 
     public static Money inputMoney() {
@@ -30,7 +40,6 @@ public class InputView {
                 .map(Integer::parseInt)
                 .map(LottoNumber::new)
                 .collect(Collectors.toList());
-
         return new Lotto(numbers);
     }
 

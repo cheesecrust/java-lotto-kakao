@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Money {
     private static final Integer LOTTO_COST = 1000;
-    private final Integer amount;
+    private Integer amount;
 
     public Money(Integer amount) {
         if (amount < 0) {
@@ -27,5 +27,9 @@ public class Money {
                 .sum();
 
         return totalWinningMoney.doubleValue() / amount.doubleValue();
+    }
+
+    public void decrease(ManualCount manualCount) {
+        amount -= manualCount.getCount() * LOTTO_COST;
     }
 }

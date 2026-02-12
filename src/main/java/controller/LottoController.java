@@ -4,6 +4,7 @@ import domains.*;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -13,12 +14,18 @@ public class LottoController {
     public static void run() {
         try {
             Money userMoney = retry(InputView::inputMoney);
-            ManualCount manualCount = retry(() -> InputView.inputManualCount(userMoney.availableLottoCount()));
+            ManualCount manualCount = retry(() -> InputView.inputManualCount(userMoney));
+
+            userMoney.decrease(manualCount);
+            List<Lotto> manualLottos = new ArrayList<>();
+            for (int i = 0; i < manualCount.getCount(); i++) {
+                manualLottos.add(retry(InputView::inputManualLottoList));
+            }
 
             LottoGenerator randomLottoGenerator = new RandomLottoGenerator();
             LottoTickets lottoTickets = new LottoTickets(userMoney, randomLottoGenerator);
 
-            OutputView.printLottos(lottoTickets.getLottos());
+            OutputView.printLottos(manualLottos, lottoTickets.getLottos());
 
             Lotto winningLotto = retry(InputView::inputWinningNumbers);
             LottoNumber bonusNumber = retry(() -> InputView.inputBonusNumber(winningLotto));

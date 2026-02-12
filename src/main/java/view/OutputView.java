@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
-    public static void printLottos(List<Lotto> lottos) {
-        System.out.println(lottos.size()+"개를 구매했습니다.");
+    public static void printLottos(List<Lotto> manualLottos, List<Lotto> lottos) {
+        System.out.printf("수동으로 %d장, 자동으로 %d개를 구매했습니다.%n", manualLottos.size(), lottos.size());
         lottos.forEach(System.out::println);
     }
 
