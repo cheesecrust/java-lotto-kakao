@@ -2,6 +2,7 @@ package view;
 
 import domains.Lotto;
 import domains.LottoNumber;
+import domains.ManualCount;
 import domains.Money;
 
 import java.util.Arrays;
@@ -11,6 +12,11 @@ import java.util.stream.Collectors;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
+
+    public static ManualCount inputManualCount(Integer availableLottoCount) {
+        System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
+        return new ManualCount(availableLottoCount, inputInteger());
+    }
 
     public static Money inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");

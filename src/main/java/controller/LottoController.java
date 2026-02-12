@@ -5,7 +5,6 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.List;
-import java.util.Random;
 import java.util.function.Supplier;
 
 public class LottoController {
@@ -14,8 +13,11 @@ public class LottoController {
     public static void run() {
         try {
             Money userMoney = retry(InputView::inputMoney);
+            ManualCount manualCount = retry(() -> InputView.inputManualCount(userMoney.availableLottoCount()));
+
             LottoGenerator randomLottoGenerator = new RandomLottoGenerator();
             LottoTickets lottoTickets = new LottoTickets(userMoney, randomLottoGenerator);
+
             OutputView.printLottos(lottoTickets.getLottos());
 
             Lotto winningLotto = retry(InputView::inputWinningNumbers);
