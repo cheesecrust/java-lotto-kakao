@@ -14,8 +14,8 @@ public class LottoController {
     public static void run() {
         try {
             Money userMoney = retry(InputView::inputMoney);
-            LottoGenerator lottoGenerator = new RandomLottoGenerator();
-            LottoTickets lottoTickets = new LottoTickets(userMoney, lottoGenerator);
+            LottoGenerator randomLottoGenerator = new RandomLottoGenerator();
+            LottoTickets lottoTickets = new LottoTickets(userMoney, randomLottoGenerator);
             OutputView.printLottos(lottoTickets.getLottos());
 
             Lotto winningLotto = retry(InputView::inputWinningNumbers);

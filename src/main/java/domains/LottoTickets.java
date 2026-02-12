@@ -9,13 +9,17 @@ import java.util.stream.Collectors;
 public class LottoTickets {
     private final List<Lotto> lottos;
 
-    public LottoTickets(Money money, LottoGenerator lottoGenerator) {
+    public LottoTickets(Money money, LottoGenerator randomLottoGenerator) {
         int count = money.availableLottoCount();
 
         lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            lottos.add(lottoGenerator.generate());
+            lottos.add(randomLottoGenerator.generate());
         }
+    }
+
+    public LottoTickets(List<Lotto> lottos) {
+        this.lottos = lottos;
     }
 
     public List<Lotto> getLottos() {

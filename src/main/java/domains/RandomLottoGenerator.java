@@ -8,6 +8,7 @@ public class RandomLottoGenerator implements LottoGenerator {
     private final static int FROM_INDEX = 0;
     private final static int TO_INDEX = 6;
 
+    @Override
     public Lotto generate() {
         List<LottoNumber> numbers = new ArrayList<>(LottoNumber.getAllNumbers());
         Collections.shuffle(numbers);
