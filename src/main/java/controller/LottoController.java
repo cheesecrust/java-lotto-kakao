@@ -23,7 +23,8 @@ public class LottoController {
                 manualLottos.add(retry(InputView::inputManualLotto));
             }
 
-            LottoTickets lottoTickets = new LottoTickets(manualLottos, lottoCount.getAutoCount());
+            Generator generator = new LottoGenerator();
+            LottoTickets lottoTickets = new LottoTickets(manualLottos, lottoCount.getAutoCount(), generator);
             OutputView.printLottos(lottoCount.getManualCount(), lottoTickets.getLottos());
 
             Lotto winningLotto = retry(InputView::inputWinningNumbers);

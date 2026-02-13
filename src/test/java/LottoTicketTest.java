@@ -16,7 +16,8 @@ public class LottoTicketTest {
     @BeforeEach
     public void setUP() {
         money = new Money(14000);
-        lottoTickets = new LottoTickets(List.of(), money.availableLottoCount());
+        Generator generator = new LottoGenerator();
+        lottoTickets = new LottoTickets(List.of(), money.availableLottoCount(), generator);
     }
 
     @Test
@@ -50,7 +51,7 @@ public class LottoTicketTest {
     @Test
     public void 로또_리스트가_주어졌을때_결과리스트_반환(){
         Lotto winningLotto = new Lotto(1, 2, 3, 4, 5, 6);
-        LottoNumber bonusNumber = LottoNumber.of(7);
+        LottoNumber bonusNumber = LottoNumber.from(7);
 
         List<Rank> result = lottoTickets.match(winningLotto, bonusNumber);
         assertEquals(money.availableLottoCount(), result.size());
@@ -59,7 +60,8 @@ public class LottoTicketTest {
     @Test
     public void 수동_로또와_자동_로또가_합산된다() {
         Lotto manualLotto = new Lotto(1, 2, 3, 4, 5, 6);
-        LottoTickets tickets = new LottoTickets(List.of(manualLotto), 2);
+        Generator generator = new LottoGenerator();
+        LottoTickets tickets = new LottoTickets(List.of(manualLotto), 2, generator);
 
         assertEquals(3, tickets.getLottos().size());
         assertEquals(manualLotto, tickets.getLottos().get(0));
