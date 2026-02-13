@@ -9,11 +9,9 @@ import java.util.stream.Collectors;
 public class LottoTickets {
     private final List<Lotto> lottos;
 
-    public LottoTickets(Money money) {
-        int count = money.availableLottoCount();
-
-        lottos = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
+    public LottoTickets(List<Lotto> manualLottos, int autoCount) {
+        lottos = new ArrayList<>(manualLottos);
+        for (int i = 0; i < autoCount; i++) {
             lottos.add(LottoGenerator.randomGenerate());
         }
     }

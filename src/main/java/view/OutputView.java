@@ -10,9 +10,14 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
-    public static void printLottos(List<Lotto> lottos) {
-        System.out.println(lottos.size()+"개를 구매했습니다.");
+    public static void printLottos(int manualCount, List<Lotto> lottos) {
+        int autoCount = lottos.size() - manualCount;
+        System.out.println("\n수동으로 " + manualCount + "장, 자동으로 " + autoCount + "장을 구매했습니다.");
         lottos.forEach(System.out::println);
+    }
+
+    public static void printManualComment() {
+        System.out.println("\n수동으로 구매할 번호를 입력해 주세요.");
     }
 
     public static void printWinning(List<Rank> ranks) {

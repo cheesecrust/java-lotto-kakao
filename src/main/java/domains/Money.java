@@ -20,6 +20,10 @@ public class Money {
         return amount / LOTTO_COST;
     }
 
+    public LottoCount toLottoCount(int manualCount) {
+        return new LottoCount(manualCount, availableLottoCount());
+    }
+
     public Double calculateRate(List<Rank> rankList) {
 
         Long totalWinningMoney = rankList.stream()

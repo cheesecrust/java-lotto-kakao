@@ -16,7 +16,7 @@ public class LottoTicketTest {
     @BeforeEach
     public void setUP() {
         money = new Money(14000);
-        lottoTickets = new LottoTickets(money);
+        lottoTickets = new LottoTickets(List.of(), money.availableLottoCount());
     }
 
     @Test
@@ -54,5 +54,14 @@ public class LottoTicketTest {
 
         List<Rank> result = lottoTickets.match(winningLotto, bonusNumber);
         assertEquals(money.availableLottoCount(), result.size());
+    }
+
+    @Test
+    public void 수동_로또와_자동_로또가_합산된다() {
+        Lotto manualLotto = new Lotto(1, 2, 3, 4, 5, 6);
+        LottoTickets tickets = new LottoTickets(List.of(manualLotto), 2);
+
+        assertEquals(3, tickets.getLottos().size());
+        assertEquals(manualLotto, tickets.getLottos().get(0));
     }
 }
