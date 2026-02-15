@@ -10,7 +10,7 @@ public class LottoGenerator implements Generator {
 
     @Override
     public Lotto generate() {
-        List<LottoNumber> numbers = new ArrayList<>(LottoNumber.getNumber());
+        List<LottoNumber> numbers = LottoNumber.getNumbers();
         Collections.shuffle(numbers);
         return new Lotto(numbers.subList(FROM_INDEX, TO_INDEX));
     }

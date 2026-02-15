@@ -1,5 +1,6 @@
 package domains;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -54,7 +55,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
         return ALL_NUMBERS.get(idx);
     }
 
-    public static List<LottoNumber> getNumber() {
-        return ALL_NUMBERS;
+    public static List<LottoNumber> getNumbers() {
+        return new ArrayList<>(ALL_NUMBERS);
     }
 }
