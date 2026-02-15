@@ -11,7 +11,13 @@ import java.util.function.Supplier;
 public class LottoController {
     private static final Integer RETRY_ATTEMPT = 10;
 
-    public static void run() {
+    private final Generator generator;
+
+    public LottoController(Generator generator) {
+        this.generator = generator;
+    }
+
+    public void run() {
         try {
             Money userMoney = retry(InputView::inputMoney);
 
@@ -23,7 +29,6 @@ public class LottoController {
                 manualLottos.add(retry(InputView::inputManualLotto));
             }
 
-            Generator generator = new LottoGenerator();
             LottoTickets lottoTickets = new LottoTickets(manualLottos, lottoCount.getAutoCount(), generator);
             OutputView.printLottos(lottoCount.getManualCount(), lottoTickets.getLottos());
 
@@ -41,13 +46,13 @@ public class LottoController {
         }
     }
 
-    public static RankResult execute(Money userMoney, LottoTickets lottoTickets, WinningLotto winningLotto) {
+    public RankResult execute(Money userMoney, LottoTickets lottoTickets, WinningLotto winningLotto) {
         List<Rank> ranks = lottoTickets.match(winningLotto);
         Double rate = userMoney.calculateRate(ranks);
         return new RankResult(ranks, rate);
     }
 
-    private static <T> T retry(Supplier<T> supplier) {
+    private <T> T retry(Supplier<T> supplier) {
         int attempt = 0;
         while (attempt++ < RETRY_ATTEMPT) {
             try {
