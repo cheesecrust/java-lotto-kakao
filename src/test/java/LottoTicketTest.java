@@ -1,3 +1,4 @@
+import controller.WinningLotto;
 import domains.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -6,7 +7,6 @@ import java.util.HashSet;
 import java.util.List;
 
 import static domains.Rank.FIFTH;
-import static domains.Rank.FIRST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LottoTicketTest {
@@ -28,32 +28,31 @@ public class LottoTicketTest {
 
     @Test
     public void 로또_번호가_3개_동일했을_때_5등이다() {
-        Lotto winningLotto = new Lotto(1, 2, 3, 4, 5, 6);
+        WinningLotto winningLotto = new WinningLotto(new Lotto(1, 2, 3, 4, 5, 6), new LottoNumber(44));
         Lotto lotto = new Lotto(1, 2, 3, 9, 10, 11);
         assertEquals(3, FIFTH.getCountOfMatch());
-        assertEquals(Rank.FIFTH, lotto.match(winningLotto, new LottoNumber(44)));
+        assertEquals(Rank.FIFTH, lotto.match(winningLotto));
     }
 
     @Test
     public void 로또_번호가_5개_동일하고_보너스가_맞았을때_2등이다() {
-        Lotto winningLotto = new Lotto(1, 2, 3, 4, 5, 6);
+        WinningLotto winningLotto = new WinningLotto(new Lotto(1, 2, 3, 4, 5, 6), new LottoNumber(11));
         Lotto lotto = new Lotto(1, 2, 3, 4, 5, 11);
-        assertEquals(Rank.SECOND, lotto.match(winningLotto, new LottoNumber(11)));
+        assertEquals(Rank.SECOND, lotto.match(winningLotto));
     }
 
     @Test
     public void 로또_번호가_5개_동일하고_보너스가_틀리면_3등이다() {
-        Lotto winningLotto = new Lotto(1, 2, 3, 4, 5, 6);
+        WinningLotto winningLotto = new WinningLotto(new Lotto(1, 2, 3, 4, 5, 6), new LottoNumber(10));
         Lotto lotto = new Lotto(1, 2, 3, 4, 5, 11);
-        assertEquals(Rank.THIRD, lotto.match(winningLotto, new LottoNumber(10)));
+        assertEquals(Rank.THIRD, lotto.match(winningLotto));
     }
 
     @Test
     public void 로또_리스트가_주어졌을때_결과리스트_반환(){
-        Lotto winningLotto = new Lotto(1, 2, 3, 4, 5, 6);
-        LottoNumber bonusNumber = LottoNumber.from(7);
+        WinningLotto winningLotto = new WinningLotto(new Lotto(1, 2, 3, 4, 5, 6), LottoNumber.from(7));
 
-        List<Rank> result = lottoTickets.match(winningLotto, bonusNumber);
+        List<Rank> result = lottoTickets.match(winningLotto);
         assertEquals(money.availableLottoCount(), result.size());
     }
 

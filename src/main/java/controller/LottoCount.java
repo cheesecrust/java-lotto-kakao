@@ -1,4 +1,4 @@
-package domains;
+package controller;
 
 public class LottoCount {
     private final int manualCount;

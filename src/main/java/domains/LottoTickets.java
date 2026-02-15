@@ -1,5 +1,7 @@
 package domains;
 
+import controller.WinningLotto;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,9 +22,9 @@ public class LottoTickets {
         return Collections.unmodifiableList(lottos);
     }
 
-    public List<Rank> match(Lotto winningLotto, LottoNumber bonusNumber) {
+    public List<Rank> match(WinningLotto winningLotto) {
         return lottos.stream()
-                .map(lotto -> lotto.match(winningLotto, bonusNumber))
+                .map(lotto -> lotto.match(winningLotto))
                 .collect(Collectors.toList());
     }
 }

@@ -1,5 +1,7 @@
 package domains;
 
+import controller.LottoCount;
+
 import java.util.List;
 
 public class Money {

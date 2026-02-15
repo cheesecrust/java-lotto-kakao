@@ -1,11 +1,10 @@
 package view;
 
 import domains.Lotto;
-import domains.LottoCount;
+import controller.LottoCount;
 import domains.LottoNumber;
 import domains.Money;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -43,15 +42,9 @@ public class InputView {
         return new Lotto(numbers);
     }
 
-    public static LottoNumber inputBonusNumber(Lotto winningLotto) throws IllegalArgumentException {
+    public static LottoNumber inputBonusNumber() {
         System.out.println("보너스 볼을 입력해 주세요.");
-        LottoNumber bonusNumber = new LottoNumber(inputInteger());
-
-        if (winningLotto.contains(bonusNumber)) {
-            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-        }
-
-        return bonusNumber;
+        return new LottoNumber(inputInteger());
     }
 
     public static Integer inputInteger() {

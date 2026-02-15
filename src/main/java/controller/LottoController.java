@@ -28,9 +28,10 @@ public class LottoController {
             OutputView.printLottos(lottoCount.getManualCount(), lottoTickets.getLottos());
 
             Lotto winningLotto = retry(InputView::inputWinningNumbers);
-            LottoNumber bonusNumber = retry(() -> InputView.inputBonusNumber(winningLotto));
+            LottoNumber bonusNumber = retry(InputView::inputBonusNumber);
+            WinningLotto winning = retry(() -> new WinningLotto(winningLotto, bonusNumber));
 
-            RankResult result = execute(userMoney, lottoTickets, winningLotto, bonusNumber);
+            RankResult result = execute(userMoney, lottoTickets, winning);
 
             OutputView.printWinning(result.getRanks());
             OutputView.printRate(result.getRate());
@@ -40,8 +41,8 @@ public class LottoController {
         }
     }
 
-    public static RankResult execute(Money userMoney, LottoTickets lottoTickets, Lotto winningLotto, LottoNumber bonusNumber) {
-        List<Rank> ranks = lottoTickets.match(winningLotto, bonusNumber);
+    public static RankResult execute(Money userMoney, LottoTickets lottoTickets, WinningLotto winningLotto) {
+        List<Rank> ranks = lottoTickets.match(winningLotto);
         Double rate = userMoney.calculateRate(ranks);
         return new RankResult(ranks, rate);
     }
