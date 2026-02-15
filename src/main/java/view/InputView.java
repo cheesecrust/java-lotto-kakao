@@ -37,7 +37,7 @@ public class InputView {
         List<LottoNumber> numbers = Arrays.stream(input.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
-                .map(LottoNumber::new)
+                .map(LottoNumber::from)
                 .collect(Collectors.toList());
 
         return new Lotto(numbers);
