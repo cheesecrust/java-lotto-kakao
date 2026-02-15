@@ -12,7 +12,7 @@ public class LottoTickets {
     public LottoTickets(List<Lotto> manualLottos, int autoCount, Generator lottoGenerator) {
         lottos = new ArrayList<>(manualLottos);
         for (int i = 0; i < autoCount; i++) {
-            lottos.add(lottoGenerator.randomGenerate());
+            lottos.add(lottoGenerator.generate());
         }
     }
 

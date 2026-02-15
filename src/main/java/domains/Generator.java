@@ -1,5 +1,5 @@
 package domains;
 
 public interface Generator {
-    Lotto randomGenerate();
+    Lotto generate();
 }

@@ -9,7 +9,7 @@ public class LottoGenerator implements Generator {
     private static final int TO_INDEX = 6;
 
     @Override
-    public Lotto randomGenerate() {
+    public Lotto generate() {
         List<LottoNumber> numbers = new ArrayList<>(LottoNumber.getNumber());
         Collections.shuffle(numbers);
         return new Lotto(numbers.subList(FROM_INDEX, TO_INDEX));
